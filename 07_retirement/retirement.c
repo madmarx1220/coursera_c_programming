@@ -12,7 +12,7 @@ typedef struct struct_retire_info retire_info;
 double  balance_calculation (int startAge, double initial, retire_info information) {
   double balance = initial;
   for(int i = 0; i < information.months; i++) {
-    printf("Age %3d month %2d you have $%.21f\n", (startAge+i)/12, (startAge+i)%12, balance);
+    printf("Age %3d month %2d you have $%.2f\n", (startAge+i)/12, (startAge+i)%12, balance);
     balance = balance + information.contribution + balance * information.rate_of_return;
   }
   return balance;
@@ -23,7 +23,7 @@ void retirement (int startAge,   //in months
                  double initial, //initial savings in dollars
                  retire_info working, //info about working
                  retire_info retired) {//info about being retired
-  int balance = balance_calculation(startAge, initial, working);
+  double  balance = balance_calculation(startAge, initial, working);
   balance = balance_calculation(startAge+working.months, balance, retired);
 }
 
