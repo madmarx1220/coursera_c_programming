@@ -1,22 +1,27 @@
-Grading at Thu Dec 10 06:32:53 UTC 2020
+Grading at Thu Dec 10 06:35:47 UTC 2020
 Attempting to compile retirement.c
 Checking for struct _retire_info
-not found
+Found on line 4, column 1 
 Checking for field int months
-not found
+Found on line 5, column 3 
 Checking for field double contribution
-not found
+Found on line 6, column 3 
 Checking for field double rate_of_return
-not found
+Found on line 7, column 3 
 Checking for typedef of struct _retire_info to retire_info
-You have a typedef for retire_info, but it is : 
-typedef struct struct_retire_info retire_info;
-where I instead expected you to define it to struct _retire_info
-not found
+Found on line 9, column 1 
 Checking for void retirement (int startAge, double initial,  retire_info working,  retire_info retired)
 Found on line 22, column 1 
 Checking for int main(void)
 Found on line 31, column 1 
-Your code does not have the right struct, fields, and/or functions.
+Trying to run retirement calculator..
+Your file matched the expected output
+Removing your main() and replacing it with our own to run more tests...
+temp2.c: In function ‘_old_removed_main_’:
+temp2.c:42:1: error: control reaches end of non-void function [-Werror=return-type]
+ }
+ ^
+cc1: all warnings being treated as errors
+Could not replace your main function to test further
 
-Overall Grade: F
+Overall Grade: C
