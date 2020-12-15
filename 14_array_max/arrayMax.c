@@ -2,8 +2,20 @@
 #include <stdlib.h>
 
 int * arrayMax(int * array, int n) {
+  if (n == 0) {
   return NULL;
+  }
+  int * largestPoint = array;
+  int largestNumber = *array;
+  for (int i = 0; i < n; i++) {
+    if (array[i] > largestNumber) {
+      largestNumber = array[i];
+      largestPoint = &array[i];
+    }
+  }
+  return largestPoint;
 }
+      
 
 void doTest(int * array, int n) {
   printf("arrayMax(");
