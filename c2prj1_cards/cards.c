@@ -34,7 +34,7 @@ const char * ranking_to_string(hand_ranking_t r) {
 }
 
 char value_letter(card_t c) {
-  assert_card_valid(c);
+  //  assert_card_valid(c);
   if((c.value >= 2) && (c.value <= 9)) {
     return ('0' + c.value);
   }

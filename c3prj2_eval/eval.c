@@ -51,21 +51,21 @@ suit_t flush_suit(deck_t * hand) {
     }
     ptr++;
   }
-    if(n_spades >= 5) {
-      return SPADES;
-    }
-    else if(n_hearts >= 5) {
-      return HEARTS;
-    }
-    else if(n_diamonds >= 5) {
-      return DIAMONDS;
-    }
-    else if(n_clubs >= 5) {
-      return CLUBS;
-    }
-    else {
-      return NUM_SUITS;
-    }
+  if(n_spades >= 5) {
+    return SPADES;
+  }
+  else if(n_hearts >= 5) {
+    return HEARTS;
+  }
+  else if(n_diamonds >= 5) {
+    return DIAMONDS;
+  }
+  else if(n_clubs >= 5) {
+    return CLUBS;
+  }
+  else {
+    return NUM_SUITS;
+  }
 }
 
 unsigned get_largest_element(unsigned * arr, size_t n) {
