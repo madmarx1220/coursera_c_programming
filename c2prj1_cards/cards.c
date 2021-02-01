@@ -58,7 +58,6 @@ char value_letter(card_t c) {
 
 
 char suit_letter(card_t c) {
-  assert_card_valid(c);
   switch(c.suit) {
   case SPADES:
     return 's';
