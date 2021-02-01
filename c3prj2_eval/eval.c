@@ -210,6 +210,9 @@ hand_eval_t build_hand_from_match(deck_t * hand,
   hand_eval_t ans;
   card_t ** ptr = hand->cards + idx;
   ans.ranking = what;
+  if(n == 0) {
+    ans.cards[0] = *ptr;
+  }
   for(size_t i=0; i<n; i++) {
     ans.cards[i] = *ptr;
     ptr++;
