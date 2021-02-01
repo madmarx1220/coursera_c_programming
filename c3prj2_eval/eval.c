@@ -120,7 +120,7 @@ int is_n_length_straight_at(deck_t * hand, size_t index, suit_t fs, int n) {
 	  ptr++;
 	  n--;
 	}
-	else if((**ptr).value == (**(ptr-1)).value -1) {
+	else if(((**ptr).value == (**(ptr-1)).value - 1) || ((**ptr).value == (**(ptr-1)).value)) {
 	  ptr++;
 	}
 	else {
