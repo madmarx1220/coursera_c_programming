@@ -37,7 +37,7 @@ int main(int argc, char ** argv) {
   }
   if(fgetc(f) != EOF) {
     fprintf(stderr, "The file has more too many lines");
-    return EXIT_SUCCESS;
+    return EXIT_FAILURE;
   }
   rotate(matrix);
   for(int i=0; i < 10; i++) {
