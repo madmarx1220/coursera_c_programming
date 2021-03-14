@@ -16,9 +16,48 @@ void sortData(char ** data, size_t count) {
   qsort(data, count, sizeof(char *), stringOrder);
 }
 
+void print(char ** data, size_t size) {
+  for(size_t i=0; i<size; i++) {
+    printf("%s", data[i]);
+    free(data[i]);
+  }
+}
+
+void readFile(FILE * f) {
+  char ** data = NULL;
+  char * line = NULL;
+  size_t size = 0;
+  int len = 0;
+  size_t idx = 0;
+  while((len = getline(&line, &size, f)) >= 0) {
+    data = realloc(data, (idx+1)*sizeof(*data));
+    data[idx] = malloc((len+1) * sizeof(*data[idx]));
+    strcpy(data[idx], line);
+    idx++;
+  }
+  free(line);
+  sortData(data, idx);
+  print(data, idx);
+  free(data);
+}
+
+
 int main(int argc, char ** argv) {
-  
-  //WRITE YOUR CODE HERE!
-  
+  if(argc == 1) {
+    readFile(stdin);
+  }
+  else {
+    char ** ptr = argv+1;
+    while(*ptr != NULL) {
+      FILE * f = fopen(*ptr, "r");
+      if(f == NULL) {
+	perror("could not open the file");
+	return EXIT_FAILURE;
+      }
+      readFile(f);
+      fclose(f);
+      ptr++;
+    }
+  }
   return EXIT_SUCCESS;
 }
