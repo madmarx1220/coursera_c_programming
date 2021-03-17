@@ -41,9 +41,24 @@ void addRandomMine(board_t * b) {
 }
 
 board_t * makeBoard(int w, int h, int numMines) {
-  //WRITE ME!
-  return NULL;
+  board_t * b = malloc(sizeof(*b));
+  b->width = w;
+  b->height = h;
+  b->totalMines = numMines;
+  b->board = malloc(h * sizeof(*(b->board)));
+  for(int y=0; y<h; y++) {
+    b->board[y] = malloc(w * sizeof(*(b->board[y])));
+    for(int x=0; x<w; x++) {
+      b->board[y][x] = UNKNOWN;
+    }
+  }
+  while(numMines > 0) {
+    addRandomMine(b);
+    numMines--;
+  }
+  return b;
 }
+    
 void printBoard(board_t * b) {    
   int found = 0;
   printf("    ");
@@ -94,10 +109,36 @@ void printBoard(board_t * b) {
   }
   printf("\nFound %d of %d mines\n", found, b->totalMines);
 }
+
 int countMines(board_t * b, int x, int y) {
-  //WRITE ME!
-  return 0;
+  int count = 0;
+  if(x > 0) {
+    if(IS_MINE(b->board[y][x-1])) count++;
+  }
+  if((x > 0) && (y > 0)) {
+    if(IS_MINE(b->board[y-1][x-1])) count++;
+  }
+  if((x > 0) && (y < (b->height - 1))) {
+    if(IS_MINE(b->board[y+1][x-1])) count++;
+  }
+  if(y < (b->height - 1)) {
+    if(IS_MINE(b->board[y+1][x])) count++;
+  }
+  if((x < (b->width - 1)) && (y < (b->height - 1))) {
+    if(IS_MINE(b->board[y+1][x+1])) count++;
+  }
+  if(x < (b->width - 1)) {
+    if(IS_MINE(b->board[y][x+1])) count++;
+  }
+  if((y > 0) && (x < (b->width - 1))) {
+    if(IS_MINE(b->board[y-1][x+1])) count++;
+  }
+  if(y > 0) {
+    if(IS_MINE(b->board[y-1][x])) count++;
+  }
+  return count;
 }
+
 int click (board_t * b, int x, int y) {
   if (x < 0 || x >= b->width ||
       y < 0 || y >= b->height) {
@@ -118,12 +159,20 @@ int click (board_t * b, int x, int y) {
 }
 
 int checkWin(board_t * b) {
-  //WRITE ME!
-  return 0;
+  for(int y=0; y<(b->height); y++) {
+    for(int x=0; x<(b->width); x++) {
+      if((b->board[y][x]) == UNKNOWN) return 0;
+    }
+  }
+  return 1;
 }
 
 void freeBoard(board_t * b) {
-  //WRITE ME!
+  for(int y=0; y<(b->height); y++) {
+    free(b->board[y]);
+  }
+  free(b->board);
+  free(b);
 }
 
 int readInt(char ** linep, size_t * lineszp) {
