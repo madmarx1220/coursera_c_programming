@@ -37,6 +37,7 @@ kvarray_t * readKVs(const char * fname) {
   FILE * f = fopen(fname, "r");
   if(f == NULL) {
     perror("could not open the file");
+    exit(EXIT_FAILURE);
   }
   while(getline(&line, &sz, f) >= 0) {
     kvpair = split(line);
