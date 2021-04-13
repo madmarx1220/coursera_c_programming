@@ -44,7 +44,10 @@ kvarray_t * readKVs(const char * fname) {
     addToArray(kvpair, kvarray);
   }
   free(line);
-  fclose(f);
+  if(fclose(f) != 0) {
+    perror("file can not be closed");
+    exit(EXIT_FAILURE);
+  }
   return kvarray;
 }
 
