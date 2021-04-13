@@ -9,6 +9,7 @@ kvpair_t * split(char * line) {
   kvpair_t * pair = malloc(sizeof(*pair));
   if((ptr = strchr(line, '=')) == NULL) {
     fprintf(stderr, "No = in the input file!");
+    exit(EXIT_FAILURE);
   }
   pair->key = malloc((ptr-line+1)*sizeof(*pair->key));
   strncpy(pair->key, line, (ptr-line+1));
