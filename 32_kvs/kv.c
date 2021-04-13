@@ -71,7 +71,7 @@ void printKVs(kvarray_t * pairs) {
 char * lookupValue(kvarray_t * pairs, const char * key) {
   for(int i=0; i<pairs->num_of_kvpairs; i++) {
     if(strcmp((pairs->kvpairs[i])->key, key) == 0) {
-      return (pairs->kvpairs[i])->key;
+      return (pairs->kvpairs[i])->value;
     }
   }
   return NULL;
