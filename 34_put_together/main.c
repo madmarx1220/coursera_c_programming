@@ -22,6 +22,9 @@ counts_t * countFile(const char * filename, kvarray_t * kvPairs) {
     addCount(counts, value);
   }
   free(line);
+  if(fclose(f) != 0) {
+    fprintf(stderr, "can't close the file\n");
+  }
   return counts;
 }
 
