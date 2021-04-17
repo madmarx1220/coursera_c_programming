@@ -43,9 +43,9 @@ int main(int argc, char ** argv) {
     //   (call this result c)
     counts_t * c = countFile(argv[i], kv); 
     //compute the output file name from argv[i] (call this outName)
-    char * outName = malloc((strlen(argv[i])+7) * sizeof(*outName));
+    char * outName = malloc((strlen(argv[i])+8) * sizeof(*outName));
     strcpy(outName, argv[i]);
-    strcat(outName, ".count");
+    strcat(outName, ".counts");
     //open the file named by outName (call that f)
     FILE * f = fopen(outName, "w+");
     if(f == NULL) {
