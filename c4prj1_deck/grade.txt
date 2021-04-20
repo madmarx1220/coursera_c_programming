@@ -1,0 +1,12 @@
+Grading at Tue Apr 20 06:21:08 UTC 2021
+Compiling deck.c -> deck.o
+deck.c: In function ‘add_empty_card’:
+deck.c:54:4: error: invalid type argument of ‘->’ (have ‘card_t {aka struct card_tag}’)
+   c->value = 0;
+    ^
+deck.c:55:4: error: invalid type argument of ‘->’ (have ‘card_t {aka struct card_tag}’)
+   c->suit = 0;
+    ^
+Compilation of deck.c failed
+
+Overall Grade: F
