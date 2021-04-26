@@ -1,16 +1,30 @@
-Grading at Mon Apr 26 05:29:08 UTC 2021
+Grading at Mon Apr 26 05:30:32 UTC 2021
 Compiling cards.c -> cards.o
 Compiling deck.c -> deck.o
 Compiling input.c -> input.o
 Compiling future.c -> future.o
 Linking input.o, future.o deck.o, cards.o, and our tester
-future.o: In function `main':
-future.c:(.text+0x295): multiple definition of `main'
-input.o:input.c:(.text+0x24c): first defined here
-test-input.o: In function `main':
-/home/drew/poker/graders/test-input.c:57: multiple definition of `main'
-input.o:input.c:(.text+0x24c): first defined here
-collect2: error: ld returned 1 exit status
-Linking failed
+Testing with input file with 
+ o 1 hand
+ o No unknown/future cards
+Your file matched the expected output
+Test case passed
+Testing with input file with 
+ o Many hands
+ o No unknown/future cards
+Your file matched the expected output
+Test case passed
+Testing with input file with 
+ o Many hands
+ o 1 unknown/future cards per hand
+Line_1_did_not_match
+Your file did not match the expected ouput
+Test case failed
+Testing with input file with 
+ o Many hands
+ o Many unknown/future cards per hand
+Line_1_did_not_match
+Your file did not match the expected ouput
+Test case failed
 
-Overall Grade: F
+Overall Grade: C
