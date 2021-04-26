@@ -1,4 +1,7 @@
-#include "input.c"
+#include "input.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 deck_t * hand_from_string(const char * str, future_cards_t *fc) {
   deck_t * deck = malloc(sizeof(*deck));
@@ -7,7 +10,7 @@ deck_t * hand_from_string(const char * str, future_cards_t *fc) {
   size_t unknown;
   char value, suit;
   card_t card;
-  char * ptr = str;
+  const char * ptr = str;
   while(*ptr != '\0') {
     if(*ptr == '?') {
       ptr++;
@@ -52,3 +55,6 @@ deck_t ** read_input(FILE * f, size_t * n_hands, future_cards_t *fc) {
   return decks;
 }
     
+int main() {
+  return 1;
+}

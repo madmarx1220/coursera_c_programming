@@ -1,4 +1,6 @@
 #include "future.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void add_future_card(future_cards_t * fc, size_t index, card_t * ptr) {
   if(index < fc->n_decks) {
@@ -32,3 +34,6 @@ void future_cards_from_deck(deck_t * deck, future_cards_t * fc) {
   }
 }
 
+int main() {
+  return EXIT_SUCCESS;
+}
