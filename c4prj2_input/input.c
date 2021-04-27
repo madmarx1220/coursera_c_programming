@@ -15,6 +15,10 @@ deck_t * hand_from_string(const char * str, future_cards_t *fc) {
     if(*ptr == '?') {
       ptr++;
       unknown = *ptr - '0';
+      if(unknown < 0 || unknown > 9) {
+	fprintf(stderr, "the unknown cards is not right");
+	exit(EXIT_FAILURE);
+      }
       add_future_card(fc, unknown, add_empty_card(deck));
       ptr++;
     }
