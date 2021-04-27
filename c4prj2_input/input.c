@@ -18,11 +18,11 @@ deck_t * hand_from_string(const char * str, future_cards_t *fc) {
       ptr++;
       while((*ptr != ' ') && (*ptr != '\0')) {
 	n++;
-	temp = realloc(temp, n*sizeof(char));
+	temp = realloc(temp, n*sizeof(char*));
 	temp[n-1] = *ptr;
 	ptr++;
       }
-      temp = realloc(temp, (n+1)*sizeof(char));
+      temp = realloc(temp, (n+1)*sizeof(char*));
       temp[n] = '\0';
       unknown = atoi(temp);
       add_future_card(fc, unknown, add_empty_card(deck));
