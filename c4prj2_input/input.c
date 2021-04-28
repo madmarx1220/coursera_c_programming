@@ -13,11 +13,12 @@ deck_t * hand_from_string(const char * str, future_cards_t *fc) {
   const char * ptr = str;
   char * space;
   char temp[20];
+  size_t i;
   while(*ptr != '\0') {
     if(*ptr == '?') {
       ptr++;
       space = strchr(ptr, ' ');
-      for(int i=0; i<space-ptr; i++) {
+      for(i=0; i<space-ptr; i++) {
 	temp[i] = ptr[i];
       }
       ptr += i;
