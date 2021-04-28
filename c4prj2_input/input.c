@@ -11,22 +11,19 @@ deck_t * hand_from_string(const char * str, future_cards_t *fc) {
   char value, suit;
   card_t card;
   const char * ptr = str;
-  char * temp = NULL;
-  size_t n = 0;
+  char * space;
+  char temp[20];
   while(*ptr != '\0') {
     if(*ptr == '?') {
       ptr++;
-      while((*ptr != ' ') && (*ptr != '\0')) {
-	n++;
-	temp = realloc(temp, n*sizeof(char*));
-	temp[n-1] = *ptr;
-	ptr++;
+      space = strchr(ptr, ' ');
+      for(int i=0; i<space-ptr; i++) {
+	temp[i] = ptr[i];
       }
-      temp = realloc(temp, (n+1)*sizeof(char*));
-      temp[n] = '\0';
+      ptr += i;
+      temp[i] = '\0';
       unknown = atoi(temp);
       add_future_card(fc, unknown, add_empty_card(deck));
-      free(temp);
     }
     if(*ptr == ' ') {
       ptr++;
