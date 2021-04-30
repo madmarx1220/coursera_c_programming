@@ -1,5 +1,7 @@
 #include "future.h"
 #include "input.h"
+#include "cards.h"
+#include "deck.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -20,12 +22,16 @@ int main(int argc, char ** argv) {
   deck_t ** decks = read_input(f, &n_hands, fc);
   deck_t * common_deck = build_remaining_deck(decks, n_hands);
   future_cards_from_deck(common_deck, fc);
-  for(size_t i=0; i<n_decks; i++) {
+  for(size_t i=0; i<n_hands; i++) {
     print_hand(decks[i]);
     printf("\n");
     free_deck(decks[i]);
   }
+  print_hand(common_deck);
+  printf("\n");
   free(fc);
   free(decks);
   free_deck(common_deck);
+  fclose(f);
+  return EXIT_SUCCESS;
 }

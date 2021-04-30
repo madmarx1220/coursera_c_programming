@@ -12,14 +12,15 @@ deck_t * hand_from_string(const char * str, future_cards_t *fc) {
   card_t card;
   const char * ptr = str;
   char * space;
-  char * temp = NULL;
   size_t n;
-  while(*ptr != '\0') {
+  while(*ptr != '\n') {
     if(*ptr == '?') {
       ptr++;
-      space = strchr(ptr, ' ');
+      if((space = strchr(ptr, ' ')) == NULL) {
+	space = strchr(ptr, '\n');
+      }
       n = space - ptr;
-      temp = malloc((n+1)*sizeof(*temp));
+      char * temp = malloc((n+1)*sizeof(*temp));
       for(int i=0; i<n; i++) {
 	temp[i] = *ptr;
 	ptr++;
@@ -29,7 +30,7 @@ deck_t * hand_from_string(const char * str, future_cards_t *fc) {
       add_future_card(fc, unknown, add_empty_card(deck));
       free(temp);
     }
-    if(*ptr == ' ') {
+    else if(*ptr == ' ') {
       ptr++;
     }
     else {
@@ -52,12 +53,9 @@ deck_t * hand_from_string(const char * str, future_cards_t *fc) {
 deck_t ** read_input(FILE * f, size_t * n_hands, future_cards_t *fc) {
   char * line = NULL;
   size_t sz = 0;
-  char * ptr;
   deck_t ** decks = NULL;
   *n_hands = 0;
-  while(getline(&line, &sz, f) >=0) {
-    ptr = strchr(line, '\n');
-    *ptr = '\0';
+  while(getline(&line, &sz, f) >= 0) {
     (*n_hands) += 1;
     decks = realloc(decks, *n_hands * sizeof(*decks));
     decks[*n_hands - 1] = hand_from_string(line, fc);
