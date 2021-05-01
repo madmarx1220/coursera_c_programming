@@ -29,6 +29,10 @@ int main(int argc, char ** argv) {
   }
   print_hand(common_deck);
   printf("\n");
+  for(size_t i=0; i<fc->n_decks; i++) {
+    free((fc->decks[i]).cards);
+  }
+  free(fc->decks);
   free(fc);
   free(decks);
   free_deck(common_deck);
