@@ -50,10 +50,10 @@ int main(int argc, char ** argv) {
 	draw++;
       }
       else {
-	draw = 0;
+	
       }
     }
-    if(draw == n_hands-1) {
+    if(draw != 0) {
       (win_array[n_hands])++;
     }
     else {
